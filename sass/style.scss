@@ -53,15 +53,25 @@ body {
 }
 
 .posts {
-  flex: 2 0 0;
+  flex: 2 0 0;  
 }
 
 .sidebar, .posts {
-  background: $color-light;
+  background:  rgba(255, 218, 218, 0.609);
   margin-right: 10px;
   padding: 40px;
   border: 1px solid $color-dark;
   border-radius: 5px;
+  a{
+    text-decoration: none;
+    color: #444;
+    &:hover{
+        color: rgb(253, 145, 246);
+        font-size: 18px;
+        font-weight: 700;
+        text-decoration:underline;
+    }
+  }
 }
 
 /* Logo */
