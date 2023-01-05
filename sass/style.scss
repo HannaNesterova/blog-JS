@@ -128,3 +128,30 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+@media all and (max-width:768px ){
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      .sidebar{
+        display: flex;
+        flex-direction: column;
+      }
+      .titles{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      li{
+        margin-right: 10px;
+      }
+      .tags, .authors{
+        display: flex;
+        &:hover{
+            color: rgb(253, 145, 246);
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration:underline;
+        }
+    }
+}
