@@ -35,7 +35,18 @@ function titleClickHandler(event){
   }
 
 
+const optArticleSelector = document.querySelector('.post');
+const optTitleSelector = document.querySelector('.post-title');
+const optTitleListSelector = document.querySelector('.titles'); 
 
+function generateTitleLinks (){
 
+/* remove contents of titleList */
+const titleList = optTitleListSelector;
 
-
+function clearMessages(){
+	titleList.querySelectorAll('*').forEach((titleList)=> titleList.remove());
+}
+clearMessages(); 
+}
+generateTitleLinks();
