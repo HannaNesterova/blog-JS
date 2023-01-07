@@ -29,10 +29,7 @@ targetArticle.classList.add('active');
 }
 
     
-const links = document.querySelectorAll('.titles a');
-for(let link of links){
-link.addEventListener('click', titleClickHandler);
-}
+
 
 //SECOND PART OF THE JS CODE
 
@@ -65,12 +62,25 @@ console.log(articleTitle)
 const getTitle = articleTitle.innerHTML;
 console.log(getTitle) 
     /* create HTML of the link */
-
+const createLink =`
+  <li>
+    <a href= "#${articleId}">
+      <span>${getTitle}</span>
+    </a>
+  </li>
+`;
+console.log(createLink)
     /* insert link into titleList */
-
+titleList.innerHTML = titleList.innerHTML +createLink;
 
 })
   
 }
 
 generateTitleLinks();
+
+
+const links = document.querySelectorAll('.titles a');
+for(let link of links){
+link.addEventListener('click', titleClickHandler);
+}
