@@ -43,6 +43,8 @@ const optArticleSelector = '.post',
 function generateTitleLinks(){
 
   /* remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  console.log(titleList)
 
   /* for each article */
 
