@@ -44,7 +44,12 @@ function generateTitleLinks(){
 
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
-  console.log(titleList)
+  console.log(titleList);
+
+  function clearMessage() {
+    titleList.innerHTML = "";
+  }
+  clearMessage();
 
   /* for each article */
 
