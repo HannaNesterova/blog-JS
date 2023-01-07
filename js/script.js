@@ -59,9 +59,11 @@ articles.forEach((article) => {
   console.log(articleId)
 
     /* find the title element */
-
+const articleTitle = article.querySelector(optTitleSelector);
+console.log(articleTitle)
     /* get the title from the title element */
-
+const getTitle = articleTitle.innerHTML;
+console.log(getTitle) 
     /* create HTML of the link */
 
     /* insert link into titleList */
