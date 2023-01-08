@@ -69,6 +69,7 @@ body {
         color: rgb(253, 145, 246);
         font-weight: 700;
         text-decoration:underline;
+        transition-duration: 0.5s;
     }
   }
 }
@@ -114,6 +115,7 @@ body {
   display: none;
   &.active {
     display: block;
+   
   }
 }
 
