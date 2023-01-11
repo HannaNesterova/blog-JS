@@ -78,7 +78,9 @@ for (let link of links) {
 
 function generateTags () {
   /* find all articles */
-
+  // eslint-disable-next-line no-unused-vars
+  const allArticles = document.querySelectorAll(optArticleSelector);
+  console.log(allArticles);
   /* START LOOP: for every article: */
 
   /* find tags wrapper */
