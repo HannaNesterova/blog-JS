@@ -79,16 +79,19 @@ for (let link of links) {
 function generateTags () {
   /* find all articles */
   // eslint-disable-next-line no-unused-vars
-  const allArticles = document.querySelectorAll(optArticleSelector);
-  console.log(allArticles);
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log(articles);
   /* START LOOP: for every article: */
-
+  // eslint-disable-next-line no-unused-vars
+  for (let article of articles) {
   /* find tags wrapper */
-
-  /* make html variable with empty string */
-
-  /* get tags from data-tags attribute */
-
+    // eslint-disable-next-line no-unused-vars
+    const tagsWrapper = article.querySelector(optArticleSelector);
+    console.log(tagsWrapper);
+    /* make html variable with empty string */
+    let htmlVariable = ' ';
+    /* get tags from data-tags attribute */
+    const getArticleTag = article.getAttribute('data-tag');
   /* split tags into array */
 
   /* START LOOP: for each tag */
@@ -102,6 +105,7 @@ function generateTags () {
   /* insert HTML of all the links into the tags wrapper */
 
   /* END LOOP: for every article: */
+  }
 }
 
 generateTags();
