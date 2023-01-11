@@ -32,7 +32,8 @@ function titleClickHandler (e) {
 // eslint-disable-next-line one-var
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks () {
   /* remove contents of titleList */
