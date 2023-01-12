@@ -87,31 +87,36 @@ function generateTags () {
   for (let article of articles) {
   /* find tags wrapper */
     // eslint-disable-next-line no-unused-vars
-    const tagsWrapper = article.querySelector(optArticleSelector);
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
     console.log(tagsWrapper);
     /* make html variable with empty string */
     let html = ' ';
     console.log(html);
     /* get tags from data-tags attribute */
-    const getArticleTag = article.getAttribute('data-tags');
-    console.log(getArticleTag);
+    // eslint-disable-next-line no-unused-vars
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
     /* split tags into array */
-    const splitTagArray = getArticleTag.split(' ');
-    console.log(splitTagArray);
-  /* START LOOP: for each tag */
-    for (let tag of splitTagArray) {
-  /* generate HTML of the link */
-  
+    const articleTagsArray = articleTags.split(' ');
+    console.log(articleTagsArray);
+    /* START LOOP: for each tag */
+    for (let tag of articleTagsArray) {
+      console.log(tag);
+      /* generate HTML of the link */
+      const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
+      console.log(link);
+      /* add generated code to html variable */
+      let html = ' ' + link;
+      console.log(html);
+      /* END LOOP: for each tag */
+      article.innerHTML = article.innerHTML + html;
+    }
+  }
+}
 
-  /* add generated code to html variable */
-
-  /* END LOOP: for each tag */
 
   /* insert HTML of all the links into the tags wrapper */
 
   /* END LOOP: for every article: */
-    }
-  }
-}
 
 generateTags();
