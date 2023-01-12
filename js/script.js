@@ -33,6 +33,7 @@ function titleClickHandler (e) {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
+  // eslint-disable-next-line no-unused-vars
   optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks () {
@@ -89,14 +90,18 @@ function generateTags () {
     const tagsWrapper = article.querySelector(optArticleSelector);
     console.log(tagsWrapper);
     /* make html variable with empty string */
-    let htmlVariable = ' ';
+    let html = ' ';
+    console.log(html);
     /* get tags from data-tags attribute */
-    const getArticleTag = article.getAttribute('data-tag');
-  /* split tags into array */
-
+    const getArticleTag = article.getAttribute('data-tags');
+    console.log(getArticleTag);
+    /* split tags into array */
+    const splitTagArray = getArticleTag.split(' ');
+    console.log(splitTagArray);
   /* START LOOP: for each tag */
-
+    for (let tag of splitTagArray) {
   /* generate HTML of the link */
+  
 
   /* add generated code to html variable */
 
@@ -105,6 +110,7 @@ function generateTags () {
   /* insert HTML of all the links into the tags wrapper */
 
   /* END LOOP: for every article: */
+    }
   }
 }
 
