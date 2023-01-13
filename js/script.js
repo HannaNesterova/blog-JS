@@ -36,7 +36,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   // eslint-disable-next-line no-unused-vars
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 // FUNCTION #2
 
@@ -93,7 +94,7 @@ function generateTags () {
     // eslint-disable-next-line no-unused-vars
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     /* make html variable with empty string */
-    // let html = ' ';
+    let html = ' ';
     /* get tags from data-tags attribute */
     // eslint-disable-next-line no-unused-vars
     const articleTags = article.getAttribute('data-tags');
@@ -162,6 +163,9 @@ addClickListenersToTags();
 
 // FUNCTION #5 generateAuthors
 
-function generateAuthors() {
-  const articleList = document.querySelector(optTitleListSelector);
+function generateAuthors () {
+  const authors = document.querySelectorAll(optArticleSelector);
+  for (let author of authors) {
+    const authorWrapper = document.querySelector(optArticleAuthorSelector);
+  }
 }
