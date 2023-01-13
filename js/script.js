@@ -162,5 +162,6 @@ addClickListenersToTags();
 
 // FUNCTION #5 generateAuthors
 
-function generateAuthors () {
+function generateAuthors() {
+  const articleList = document.querySelector(optTitleListSelector);
 }
