@@ -93,7 +93,7 @@ function generateTags () {
     // eslint-disable-next-line no-unused-vars
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     /* make html variable with empty string */
-    let html = ' ';
+    // let html = ' ';
     /* get tags from data-tags attribute */
     // eslint-disable-next-line no-unused-vars
     const articleTags = article.getAttribute('data-tags');
@@ -123,9 +123,9 @@ function tagClickHandler (e) {
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
   /* make a new constant "href" and read the attribute "href" of the clicked element */
-  const href = clickedElement.querySelectorAll('href');
+  const href = clickedElement.getAttribute('href');
   /* make a new constant "tag" and extract tag from the "href" constant */
-  const tag = href.replace('#tag-', ' ');
+  const tag = href.replace('#tag-', '');
   /* find all tag links with class active */
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   /* START LOOP: for each active tag link */
@@ -135,7 +135,7 @@ function tagClickHandler (e) {
   /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const allTaglinks = href.querySelectorAll('href');
+  const allTaglinks = document.querySelectorAll('a[href="' + href + '"]');
   /* START LOOP: for each found tag link */
   for (let tagLink of allTaglinks) {
     /* add class active */
@@ -159,3 +159,8 @@ function addClickListenersToTags () {
 }
 
 addClickListenersToTags();
+
+// FUNCTION #5 generateAuthors
+
+function generateAuthors () {
+}
