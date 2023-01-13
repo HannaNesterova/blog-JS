@@ -36,8 +36,7 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   // eslint-disable-next-line no-unused-vars
-  optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleTagsSelector = '.post-tags .list';
 
 // FUNCTION #2
 
@@ -89,23 +88,24 @@ function generateTags () {
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
   // eslint-disable-next-line no-unused-vars
-  for (let article of articles) {
+  for (const article of articles) {
   /* find tags wrapper */
     // eslint-disable-next-line no-unused-vars
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     /* make html variable with empty string */
-    let html = ' ';
+    // eslint-disable-next-line no-unused-vars
+    const html = ' ';
     /* get tags from data-tags attribute */
     // eslint-disable-next-line no-unused-vars
     const articleTags = article.getAttribute('data-tags');
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
-    for (let tag of articleTagsArray) {
+    for (const tag of articleTagsArray) {
       /* generate HTML of the link */
       const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
       /* add generated code to html variable */
-      let html = ' ' + link;
+      const html = ' ' + link;
       /* END LOOP: for each tag */
       article.innerHTML = article.innerHTML + html;
     }
@@ -130,15 +130,15 @@ function tagClickHandler (e) {
   /* find all tag links with class active */
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   /* START LOOP: for each active tag link */
-  for (let activeTagLink of activeTagLinks) {
+  for (const activeTagLink of activeTagLinks) {
   /* remove class active */
     activeTagLink.classList.remove('active');
   /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const allTaglinks = document.querySelectorAll('a[href="' + href + '"]');
+  const allTaglinks = href.querySelectorAll('href');
   /* START LOOP: for each found tag link */
-  for (let tagLink of allTaglinks) {
+  for (const tagLink of allTaglinks) {
     /* add class active */
     tagLink.classList.add('active');
   }
@@ -150,9 +150,10 @@ function tagClickHandler (e) {
 
 function addClickListenersToTags () {
   /* find all links to tags */
-  const linksToTag = document.querySelectorAll('.list, li.a');
+  const linksToTag = document.querySelectorAll('a.active[href^="#tag-"]');
+
   /* START LOOP: for each link */
-  for (let linkToTag of linksToTag) {
+  for (const linkToTag of linksToTag) {
     /* add tagClickHandler as event listener for that link */
     linkToTag.addEventListener('click', tagClickHandler);
   }
@@ -163,9 +164,44 @@ addClickListenersToTags();
 
 // FUNCTION #5 generateAuthors
 
+const optArticleAuthorSelector = document.querySelectorAll('.post-author');
+
 function generateAuthors () {
   const authors = document.querySelectorAll(optArticleSelector);
-  for (let author of authors) {
-    const authorWrapper = document.querySelector(optArticleAuthorSelector);
+  for (const author of authors) {
+    const authorWrapper = author.querySelectorAll(optArticleAuthorSelector);
+    // eslint-disable-next-line no-unused-vars
+    const html = '';
+    const authorTag = author.getAttribute('data-author');
+    const linkAuthor = '<li><a href = "#tag-' + authorTag + '">' + authorTag + '</a></li>';
+    authorWrapper.innerHTML = authorWrapper.innerHTML + linkAuthor;
   }
 }
+generateAuthors();
+
+function addClickListenersToAuthors () {
+  const linksToAuthor = document.querySelectorAll(optArticleAuthorSelector);
+  for (const linkToAuthor of linksToAuthor) {
+    linkToAuthor.addEventListener('click', generateAuthors());
+  }
+}
+addClickListenersToAuthors();
+
+function authorClickHandler (e) {
+  e.preventDefault();
+  const clickedAutthor = this;
+  const authour = clickedAutthor.getAttribute('data-author');
+  const tag = authour.replace('data-author', '');
+  const activeAuthorLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+  // eslint-disable-next-line prefer-const
+  for (let activeAuthorLink of activeAuthorLinks) {
+    activeAuthorLink.classList.remove('active');
+  }
+  const allAuthorLinks = authour.querySelectorAll('data-author');
+  // eslint-disable-next-line prefer-const
+  for (let authourLink of allAuthorLinks) {
+    authourLink.classList.add('active');
+  }
+  generateTitleLinks('[data-tags="' + tag + '"]');
+}
+authorClickHandler();
