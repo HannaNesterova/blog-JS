@@ -156,7 +156,7 @@ function addClickListenersToTags () {
   /* START LOOP: for each link */
   for (const linkToTag of linksToTag) {
     /* add tagClickHandler as event listener for that link */
-    linkToTag.addEventListener('click', tagClickHandler);
+    linkToTag.addEventListener('click', tagClickHandle);
   }
   /* END LOOP: for each link */
 }
@@ -231,13 +231,17 @@ const optTagsListSelector = '.tags.list';
       for (let tag of tags){
       /* generate HTML of the link */
       const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
+      console.log(link)
+       /* add generated code to html variable */
+       const html = ' ' + link;
+       console.log(html)
       }
     }
 
 
 
 
-      /* add generated code to html variable */
+     
 
       /* [NEW] check if this link is NOT already in allTags */
       if(allTags.indexOf(linkHTML) == -1){
