@@ -224,12 +224,15 @@ const optTagsListSelector = '.tags.list';
       /* get tags from data-tags attribute */
       const dataTagAttribute = article.getAttribute('data-tags');
       console.log(dataTagAttribute)
+       /* split tags into array */
+       const splitTags = dataTagAttribute.split(' ');
+       console.log(splitTags)
     }
 
 
 
 
-    /* split tags into array */
+   
 
     /* START LOOP: for each tag */
 
