@@ -210,9 +210,9 @@ const optTagsListSelector = '.tags.list';
   function generateTags () {
   /* [NEW] create a new variable allTags with an empty array */
   let allTags = [];
-
   /* find all articles */
-
+    const articles = document.querySelectorAll(optArticleSelector);
+    console.log(articles);
   /* START LOOP: for every article: */
 
     /* find tags wrapper */
