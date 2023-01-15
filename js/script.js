@@ -227,6 +227,10 @@ const optTagsListSelector = '.tags.list';
        /* split tags into array */
        const splitTags = dataTagAttribute.split(' ');
        console.log(splitTags)
+      /* START LOOP: for each tag */
+      for (let tag of tags){
+        
+      }
     }
 
 
