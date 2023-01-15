@@ -221,10 +221,13 @@ const optTagsListSelector = '.tags.list';
 
     /* make html variable with empty string */
       let html = '';
+      /* get tags from data-tags attribute */
+      const dataTagAttribute = article.getAttribute('data-tags');
+      console.log(dataTagAttribute)
     }
 
 
-    /* get tags from data-tags attribute */
+
 
     /* split tags into array */
 
