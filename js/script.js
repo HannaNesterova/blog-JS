@@ -229,18 +229,13 @@ const optTagsListSelector = '.tags.list';
        console.log(splitTags)
       /* START LOOP: for each tag */
       for (let tag of tags){
-        
+      /* generate HTML of the link */
+      const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
       }
     }
 
 
 
-
-   
-
-    /* START LOOP: for each tag */
-
-      /* generate HTML of the link */
 
       /* add generated code to html variable */
 
