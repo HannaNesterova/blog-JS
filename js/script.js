@@ -38,7 +38,9 @@ const optArticleSelector = '.post',
   // eslint-disable-next-line no-unused-vars
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list';
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
 
 // FUNCTION #2
 
@@ -142,7 +144,7 @@ function generateTags () {
   // [NEW] START LOOP: for each tah in allTags
   for (const tag in allTags) {
     // [NEW] generate code for all links and add it to allTagsHTML
-    allTagsHTML += tag + ' (' + allTags[tag] + ')';
+    allTagsHTML += '<a href ="#tag-' + tag + '">' + tag + '(' + allTags[tag] + ')</a>';
     // [NEW] END LOOP
   }
   // [NEW] add HTML from allTagsHTML to tagList
