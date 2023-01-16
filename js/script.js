@@ -85,8 +85,9 @@ for (let link of links) {
 // FUNCTION #3
 
 function generateTags () {
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
+  console.log(allTags)
   /* find all articles */
   // eslint-disable-next-line no-unused-vars
   const articles = document.querySelectorAll(optArticleSelector);
