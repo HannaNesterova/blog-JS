@@ -84,11 +84,16 @@ for (let link of links) {
 
 // FUNCTION #3
 function calculateTagsParams (tags) {
-
+  const params = { max: 0, min: 999999 };
+  for (const tag in tags) {
+    params.max = Math.max(tags[tag], params.max);
+    params.min = Math.min(tags[tag], params.max);
+  }
+  return params;
 }
 function generateTags () {
   /* [NEW] create a new variable allTags with an empty object */
-  let allTags = {};
+  const allTags = {};
   /* find all articles */
   // eslint-disable-next-line no-unused-vars
   const articles = document.querySelectorAll(optArticleSelector);
@@ -113,6 +118,7 @@ function generateTags () {
       /* add generated code to html variable */
       const html = ' ' + link;
       /* [NEW] check if this link is NOT already in allTags */
+      // eslint-disable-next-line no-prototype-builtins
       if (!allTags.hasOwnProperty(tag)) {
       /* [NEW] add generated code to allTags objact */
         allTags[tag] = 1;
