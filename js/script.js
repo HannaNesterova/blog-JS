@@ -83,7 +83,9 @@ for (let link of links) {
 }
 
 // FUNCTION #3
+function calculateTagsParams (tags) {
 
+}
 function generateTags () {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -111,7 +113,7 @@ function generateTags () {
       /* add generated code to html variable */
       const html = ' ' + link;
       /* [NEW] check if this link is NOT already in allTags */
-      if (!allTags.hasOwnProperty (tag)) {
+      if (!allTags.hasOwnProperty(tag)) {
       /* [NEW] add generated code to allTags objact */
         allTags[tag] = 1;
       } else {
@@ -125,14 +127,14 @@ function generateTags () {
   /* END LOOP: for every article: */
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
-
   /* [NEW] add html from allTags to tagList */
-  /*tagList.innerHTML = allTags.join(' ');*/
-
+  /* tagList.innerHTML = allTags.join(' '); */
   // [NEW] create variables for all links HTML code
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
   let allTagsHTML = '';
   // [NEW] START LOOP: for each tah in allTags
-  for (let tag in allTags) {
+  for (const tag in allTags) {
     // [NEW] generate code for all links and add it to allTagsHTML
     allTagsHTML += tag + ' (' + allTags[tag] + ')';
     // [NEW] END LOOP
