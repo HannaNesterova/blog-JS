@@ -125,9 +125,20 @@ function generateTags () {
   /* END LOOP: for every article: */
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
+
   /* [NEW] add html from allTags to tagList */
-  //tagList.innerHTML = allTags.join(' ');
-  console.log(allTags);
+  /*tagList.innerHTML = allTags.join(' ');*/
+
+  // [NEW] create variables for all links HTML code
+  let allTagsHTML = '';
+  // [NEW] START LOOP: for each tah in allTags
+  for (let tag in allTags) {
+    // [NEW] generate code for all links and add it to allTagsHTML
+    allTagsHTML += tag + ' (' + allTags[tag] + ')';
+    // [NEW] END LOOP
+  }
+  // [NEW] add HTML from allTagsHTML to tagList
+  tagList.innerHTML = allTagsHTML;
 }
 generateTags();
 
