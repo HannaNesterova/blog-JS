@@ -239,20 +239,20 @@ function generateAuthors () {
   // [NEW] create variables for all links HTML code
   const paramsAuthor = calculateAuthorParams(allAuthors);
   let allAuthorsHTML = '';
-  for (let tag in allAuthors) {
+  for (let link in allAuthors) {
     // [NEW] generate code for all links and add it to allTagsHTML
-    allAuthorsHTML += '<li><a href="#tag-' + tag + ' ">' + tag + '(' + allAuthors[tag] + ')' + '</a></li>';
+    allAuthorsHTML += '<li><a href=#tag-' + link + ' ">' + '(' + allAuthors[link] + ')' + '</a></li>';
     // allTagsHTML += tagLinkHTML;- i'm not sure about this
   }
   // [NEW] add HTML from allTagsHTML to tagList
-
+  authorList.innerHTML = allAuthorsHTML;
 ///////
 
-  function calculateAuthorParams (tags) {
+  function calculateAuthorParams (links) {
     const params = { max: 0, min: 999999 };
-    for (const tag in tags) {
-      params.max = Math.max(tags[tag], params.max);
-      params.min = Math.min(tags[tag], params.min);
+    for (const link in links) {
+      params.max = Math.max(links[link], params.max);
+      params.min = Math.min(links[link], params.min);
     }
     console.log(params);
     return params;
