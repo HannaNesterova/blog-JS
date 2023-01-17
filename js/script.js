@@ -11,7 +11,7 @@ const optArticleSelector = '.post',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
   optCloudClassPrefix = 'tag-size-',
-  optAuthorsListSelector = '.author-name';
+  optAuthorsListSelector = '.authors.list';
 
 // FUNCTION #1 TITLE_CLICK_HANDLER
 function titleClickHandler (e) {
@@ -211,31 +211,32 @@ function generateAuthors () {
     const articleTagAuthor = article.getAttribute('data-author');
     const link = '<li><a href = "#author-' + articleTagAuthor + '">' + articleTagAuthor + '</a></li>';
     html = html + link;
-    tagWrapperAuthor.innerHTML = html;
     /* [NEW] check if this link is NOT already in allAuthors */
     if (allAuthors.indexOf(link) === -1) {
       /* [NEW] add generated code to allAuthors array */
       allAuthors.push(link);
     }
+    // insert HTML of all the links into the tags wrappwr
+    tagWrapperAuthor.innerHTML = tagWrapperAuthor.innerHTML + html;
+  }
     // [NEW] find list of tags in right column */
     const authorList = document.querySelector(optAuthorsListSelector);
     /* [NEW] add html from allAuthors to tagList */
     authorList.innerHTML = allAuthors.join(' ');
 
     if (!allAuthors.hasOwnProperty(link)) {
-      /* [NEW] add generated code to allTags objact */
-      allAuthors[link] = 1;
+    /* [NEW] add generated code to allTags objact */
+    allAuthors[link] = 1;
     } else {
-      allAuthors[link]++;
+    allAuthors[link]++;
     }
-    const linkList = document.querySelector('.list authors');
+    const linkList = document.querySelector(optAuthorsListSelector);
     let allLinksHTML = '';
     for (let link in linkList) {
-      allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
-      linkList.innerHTML = allLinksHTML;
-    }
+    allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
+    linkList.innerHTML = allLinksHTML;
+    
   }
-}
 generateAuthors();
 
 // FUNCTION #7 AUTHOR_CLICK_HANDLER
