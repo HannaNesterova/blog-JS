@@ -87,7 +87,6 @@ for (let link of links) {
 function generateTags () {
   /* [NEW] create a new variable allTags with an empty object */
   const allTags = {};
-  console.log(allTags);
   /* find all articles */
   const articles = document.querySelectorAll(opts.articleSelector);
   /* START LOOP: for every article: */
@@ -117,12 +116,13 @@ function generateTags () {
       /* insert HTML of all the links into the tags wrapper */
       tagsWrapper.innerHTML = tagsWrapper.innerHTML + html;
     }
+    /* END LOOP: for every article: */
   }
-  /* END LOOP: for every article: */
+
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(opts.tagsListSelector);
   /* [NEW] add html from allTags to tagList */
-  /* tagList.innerHTML = allTags.join(' '); */
+
   // [NEW] create variables for all links HTML code
   const tagsParams = calculateTagsParams(allTags);
   let allTagsHTML = '';
@@ -141,7 +141,6 @@ function generateTags () {
       params.max = Math.max(tags[tag], params.max);
       params.min = Math.min(tags[tag], params.min);
     }
-    console.log(params);
     return params;
   }
   // FUNCTION #4 CALCULATE_TAG_CLASS
@@ -202,39 +201,62 @@ addClickListenersToTags();
 function generateAuthors () {
   /* [NEW] create a new variable allAuthors with an empty array */
   let allAuthors = [];
-  console.log(allAuthors);
   /* find all articles */
   const articles = document.querySelectorAll(opts.articleSelector);
-  console.log(articles);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* find tags wrapper */
     const tagWrapperAuthor = article.querySelector(opts.articleAuthorSelector);
-    console.log(tagWrapperAuthor);
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
     const articleTagAuthor = article.getAttribute('data-author');
-    console.log(articleTagAuthor);
     /* generate HTML of the link */
     const link = '<li><a href =" ' + articleTagAuthor + '">' + articleTagAuthor + '</a></li>';
-    console.log(link);
     /* add generated code to html variable */
     html = html + link;
-    console.log(html);
     /* [NEW] check if this link is NOT already in allAuthors */
     if (allAuthors.indexOf(link) === -1) {
       /* [NEW] add generated code to allAuthors array */
       allAuthors.push(link);
+    }
+
+    /* [NEW] check if this link is NOT already in allTags */
+    if (!allAuthors.hasOwnProperty(link)) {
+      /* [NEW] add generated code to allTags objact */
+      allAuthors[link] = 1;
+    } else {
+      allAuthors[link]++;
     }
     // insert HTML of all the links into the tags wrappwr
     tagWrapperAuthor.innerHTML = tagWrapperAuthor.innerHTML + html;
   }
   // [NEW] find list of tags in right column */
   const authorList = document.querySelector(opts.authorsListSelector);
-  console.log(authorList);
-  /* [NEW] add html from allAuthors to tagList */
+  /* [NEW] add html from allAuthors to authorList */
   authorList.innerHTML = allAuthors.join(' ');
+
+  // [NEW] create variables for all links HTML code
+  const paramsAuthor = calculateAuthorParams(allAuthors);
+  let allAuthorsHTML = '';
+  for (let tag in allAuthors) {
+    // [NEW] generate code for all links and add it to allTagsHTML
+    allAuthorsHTML += '<li><a href="#tag-' + tag + ' ">' + tag + '(' + allAuthors[tag] + ')' + '</a></li>';
+    // allTagsHTML += tagLinkHTML;- i'm not sure about this
+  }
+  // [NEW] add HTML from allTagsHTML to tagList
+
+///////
+
+  function calculateAuthorParams (tags) {
+    const params = { max: 0, min: 999999 };
+    for (const tag in tags) {
+      params.max = Math.max(tags[tag], params.max);
+      params.min = Math.min(tags[tag], params.min);
+    }
+    console.log(params);
+    return params;
+  }
 }
 
 generateAuthors();
