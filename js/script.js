@@ -212,51 +212,38 @@ function generateAuthors () {
     /* get tags from data-tags attribute */
     const articleTagAuthor = article.getAttribute('data-author');
     /* generate HTML of the link */
-    const link = '<li><a href =" ' + articleTagAuthor + '">' + articleTagAuthor + '</a></li>';
+    const link = '<a href ="#author-' + articleTagAuthor + '">' + articleTagAuthor + '</a>';
     /* add generated code to html variable */
     html = html + link;
-    /* [NEW] check if this link is NOT already in allAuthors */
-    if (allAuthors.indexOf(link) === -1) {
-      /* [NEW] add generated code to allAuthors array */
-      allAuthors.push(link);
-    }
-
     /* [NEW] check if this link is NOT already in allTags */
-    if (!allAuthors.hasOwnProperty(link)) {
+    if (!allAuthors.hasOwnProperty(articleTagAuthor)) {
       /* [NEW] add generated code to allTags objact */
-      allAuthors[link] = 1;
+      allAuthors[articleTagAuthor] = 1;
     } else {
-      allAuthors[link]++;
+      allAuthors[articleTagAuthor]++;
     }
     // insert HTML of all the links into the tags wrappwr
-    tagWrapperAuthor.innerHTML = tagWrapperAuthor.innerHTML + html;
+    tagWrapperAuthor.innerHTML = html;
+
+    // /* [NEW] check if this link is NOT already in allAuthors */
+    if (allAuthors.indexOf(link) === -1) {
+    //   /* [NEW] add generated code to allAuthors array */
+      allAuthors.push(link);
+    }
   }
   // [NEW] find list of tags in right column */
   const authorList = document.querySelector(opts.authorsListSelector);
+  let allAuthorsHTML = '';
   /* [NEW] add html from allAuthors to authorList */
   authorList.innerHTML = allAuthors.join(' ');
 
-  // [NEW] create variables for all links HTML code
-  const paramsAuthor = calculateAuthorParams(allAuthors);
-  let allAuthorsHTML = '';
   for (let link in allAuthors) {
     // [NEW] generate code for all links and add it to allTagsHTML
-    allAuthorsHTML += '<li><a href=#tag-' + link + ' ">' + '(' + allAuthors[link] + ')' + '</a></li>';
+    allAuthorsHTML += '<li><a href=#authors-' + link + ' ">' + '(' + allAuthors[link] + ')' + '</a></li>';
     // allTagsHTML += tagLinkHTML;- i'm not sure about this
   }
   // [NEW] add HTML from allTagsHTML to tagList
   authorList.innerHTML = allAuthorsHTML;
-///////
-
-  function calculateAuthorParams (links) {
-    const params = { max: 0, min: 999999 };
-    for (const link in links) {
-      params.max = Math.max(links[link], params.max);
-      params.min = Math.min(links[link], params.min);
-    }
-    console.log(params);
-    return params;
-  }
 }
 
 generateAuthors();
