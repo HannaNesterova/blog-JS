@@ -129,6 +129,7 @@ function generateTags () {
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
+        console.log(allTags)
       }
       /* END LOOP: for each tag */
       /* insert HTML of all the links into the tags wrapper */
@@ -198,6 +199,7 @@ function addClickListenersToTags () {
 addClickListenersToTags();
 
 // FUNCTION #6 GENERATE_AUTHORS
+
 function generateAuthors () {
   /* [NEW] create a new variable allAuthors with an empty array */
   let allAuthors = [];
@@ -212,13 +214,26 @@ function generateAuthors () {
     tagWrapperAuthor.innerHTML = html;
     /* [NEW] check if this link is NOT already in allAuthors */
     if (allAuthors.indexOf(link) === -1) {
-    /* [NEW] add generated code to allAuthors array */
+      /* [NEW] add generated code to allAuthors array */
       allAuthors.push(link);
     }
     // [NEW] find list of tags in right column */
     const authorList = document.querySelector(optAuthorsListSelector);
     /* [NEW] add html from allAuthors to tagList */
     authorList.innerHTML = allAuthors.join(' ');
+
+    if (!allAuthors.hasOwnProperty(link)) {
+      /* [NEW] add generated code to allTags objact */
+      allAuthors[link] = 1;
+    } else {
+      allAuthors[link]++;
+    }
+    const linkList = document.querySelector('.list authors');
+    let allLinksHTML = '';
+    for (let link in linkList) {
+      allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
+      linkList.innerHTML = allLinksHTML;
+    }
   }
 }
 generateAuthors();
