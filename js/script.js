@@ -83,24 +83,6 @@ for (let link of links) {
   link.addEventListener('click', titleClickHandler);
 }
 
-// FUNCTION #3 MIN AND MAX FOR TAGS
-function calculateTagsParams (tags) {
-  const params = { max: 0, min: 999999 };
-  for (const tag in tags) {
-    params.max = Math.max(tags[tag], params.max);
-    params.min = Math.min(tags[tag], params.min);
-  }
-  console.log(params);
-  return params;
-}
-// FUNCTION #4 CALCULATE_TAG_CLASS
-function calculateTagClass (count, params) {
-  const normalizedCount = count - params.min;
-  const normalizedMax = params.max - params.min;
-  const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor(percentage * (opts.cloudClassCount - 1) + 1);
-}
-
 // FUNCTION #5 GENERATE_TAGS
 function generateTags () {
   /* [NEW] create a new variable allTags with an empty object */
@@ -152,6 +134,23 @@ function generateTags () {
   }
   // [NEW] add HTML from allTagsHTML to tagList
   tagList.innerHTML = allTagsHTML;
+  // FUNCTION #3 MIN AND MAX FOR TAGS
+  function calculateTagsParams (tags) {
+    const params = { max: 0, min: 999999 };
+    for (const tag in tags) {
+      params.max = Math.max(tags[tag], params.max);
+      params.min = Math.min(tags[tag], params.min);
+    }
+    console.log(params);
+    return params;
+  }
+  // FUNCTION #4 CALCULATE_TAG_CLASS
+  function calculateTagClass (count, params) {
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor(percentage * (opts.cloudClassCount - 1) + 1);
+  }
 }
 generateTags();
 
@@ -204,13 +203,25 @@ function generateAuthors () {
   /* [NEW] create a new variable allAuthors with an empty array */
   let allAuthors = [];
   console.log(allAuthors);
+  /* find all articles */
   const articles = document.querySelectorAll(opts.articleSelector);
-  for (const article of articles) {
+  console.log(articles);
+  /* START LOOP: for every article: */
+  for (let article of articles) {
+    /* find tags wrapper */
     const tagWrapperAuthor = article.querySelector(opts.articleAuthorSelector);
+    console.log(tagWrapperAuthor);
+    /* make html variable with empty string */
     let html = '';
+    /* get tags from data-tags attribute */
     const articleTagAuthor = article.getAttribute('data-author');
-    const link = '<li><a href = "#author-' + articleTagAuthor + '">' + articleTagAuthor + '</a></li>';
+    console.log(articleTagAuthor);
+    /* generate HTML of the link */
+    const link = '<li><a href =" ' + articleTagAuthor + '">' + articleTagAuthor + '</a></li>';
+    console.log(link);
+    /* add generated code to html variable */
     html = html + link;
+    console.log(html);
     /* [NEW] check if this link is NOT already in allAuthors */
     if (allAuthors.indexOf(link) === -1) {
       /* [NEW] add generated code to allAuthors array */
@@ -221,30 +232,11 @@ function generateAuthors () {
   }
   // [NEW] find list of tags in right column */
   const authorList = document.querySelector(opts.authorsListSelector);
+  console.log(authorList);
   /* [NEW] add html from allAuthors to tagList */
   authorList.innerHTML = allAuthors.join(' ');
-  for (let link of authorList) {
-    /* generate HTML of the link */
-    const link = '<li><a href = "#tag-' + link + '">' + link + '</a></li>';
-    /* add generated code to html variable */
-    html = ' ' + link;
-    /* [NEW] check if this link is NOT already in allTags */
-    if (!allAuthors.hasOwnProperty(link)) {
-    /* [NEW] add generated code to allTags objact */
-      allAuthors[link] = 1;
-    } else {
-      allAuthors[link]++;
-    }
-    /* END LOOP: for each tag */
-    /* insert HTML of all the links into the tags wrapper */
-  }
-
-  // const linkList = document.querySelector(optAuthorsListSelector);
-  // let allLinksHTML = '';
-  // for (let link in linkList) {
-  // allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
-  // linkList.innerHTML = allLinksHTML;
 }
+
 generateAuthors();
 
 // FUNCTION #7 AUTHOR_CLICK_HANDLER
