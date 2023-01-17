@@ -1,5 +1,6 @@
 'use strict';
 
+// ALL CONST
 // eslint-disable-next-line one-var
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
@@ -11,8 +12,7 @@ const optArticleSelector = '.post',
   optCloudClassCount = 5,
   optCloudClassPrefix = 'tag-size-';
 
-// FUNCTION #1
-
+// FUNCTION #1 TITLE_CLICK_HANDLER
 function titleClickHandler (e) {
   e.preventDefault();
   const clickedElement = this;
@@ -40,8 +40,7 @@ function titleClickHandler (e) {
   targetArticle.classList.add('active');
 }
 
-// FUNCTION #2
-
+// FUNCTION #2 GENERATE_TITLE_LINKS
 function generateTitleLinks (customSelector = '') {
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
@@ -82,8 +81,7 @@ for (let link of links) {
   link.addEventListener('click', titleClickHandler);
 }
 
-// min amd max
-
+// FUNCTION #3 MIN AND MAX FOR TAGS
 function calculateTagsParams (tags) {
   const params = { max: 0, min: 999999 };
   for (const tag in tags) {
@@ -93,6 +91,7 @@ function calculateTagsParams (tags) {
   console.log(params);
   return params;
 }
+// FUNCTION #4 CALCULATE_TAG_CLASS
 function calculateTagClass (count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
@@ -100,8 +99,7 @@ function calculateTagClass (count, params) {
   const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
 }
 
-// FUNCTION #3
-
+// FUNCTION #5 GENERATE_TAGS
 function generateTags () {
   /* [NEW] create a new variable allTags with an empty object */
   const allTags = {};
@@ -152,13 +150,10 @@ function generateTags () {
   }
   // [NEW] add HTML from allTagsHTML to tagList
   tagList.innerHTML = allTagsHTML;
-  const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
 }
-
 generateTags();
 
-// FUNCTION#4 FOR CLICKED TAG
-
+// FUNCTION#5 FOR CLICKED TAG
 function tagClickHandler (e) {
   /* prevent default action for this event */
   e.preventDefault();
@@ -184,7 +179,6 @@ function tagClickHandler (e) {
     tagLink.classList.add('active');
   }
   /* END LOOP: for each found tag link */
-
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
@@ -200,11 +194,9 @@ function addClickListenersToTags () {
   }
   /* END LOOP: for each link */
 }
-
 addClickListenersToTags();
 
-// FUNCTION #5 generateAuthors
-
+// FUNCTION #6 generateAuthors
 function generateAuthors () {
   const articles = document.querySelectorAll(optArticleSelector);
   for (const article of articles) {
@@ -218,6 +210,7 @@ function generateAuthors () {
 }
 generateAuthors();
 
+// FUNCTION #7 AUTHOR_CLICK_HANDLER
 function authorClickHandler (e) {
   e.preventDefault();
   const clickedElement = this;
@@ -237,6 +230,7 @@ function authorClickHandler (e) {
 }
 authorClickHandler();
 
+// FUNCTION #8 CLICK
 function addClickListenersToAuthors () {
   const allTagLinks = document.querySelectorAll('.post-author a');
   for (const allTagLink of allTagLinks) {
