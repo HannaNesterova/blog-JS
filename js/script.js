@@ -129,7 +129,6 @@ function generateTags () {
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
-        console.log(allTags)
       }
       /* END LOOP: for each tag */
       /* insert HTML of all the links into the tags wrapper */
@@ -219,24 +218,33 @@ function generateAuthors () {
     // insert HTML of all the links into the tags wrappwr
     tagWrapperAuthor.innerHTML = tagWrapperAuthor.innerHTML + html;
   }
-    // [NEW] find list of tags in right column */
-    const authorList = document.querySelector(optAuthorsListSelector);
-    /* [NEW] add html from allAuthors to tagList */
-    authorList.innerHTML = allAuthors.join(' ');
-
+  // [NEW] find list of tags in right column */
+  const authorList = document.querySelector(optAuthorsListSelector);
+  /* [NEW] add html from allAuthors to tagList */
+  authorList.innerHTML = allAuthors.join(' ');
+  for (let link of authorList) {
+    /* generate HTML of the link */
+    const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
+    /* add generated code to html variable */
+    html = ' ' + link;
+    /* [NEW] check if this link is NOT already in allTags */
     if (!allAuthors.hasOwnProperty(link)) {
     /* [NEW] add generated code to allTags objact */
-    allAuthors[link] = 1;
+      allAuthors[link] = 1;
     } else {
-    allAuthors[link]++;
+      allAuthors[link]++;
     }
-    const linkList = document.querySelector(optAuthorsListSelector);
-    let allLinksHTML = '';
-    for (let link in linkList) {
-    allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
-    linkList.innerHTML = allLinksHTML;
-    
+    /* END LOOP: for each tag */
+    /* insert HTML of all the links into the tags wrapper */
+    tagWrapperAuthor.innerHTML = tagWrapperAuthor.innerHTML + html;
   }
+
+  // const linkList = document.querySelector(optAuthorsListSelector);
+  // let allLinksHTML = '';
+  // for (let link in linkList) {
+  // allLinksHTML += '<li><a href="#tag-' + link + ' ">' + link + '(' + linkList[link] + ')' + '</a></li>';
+  // linkList.innerHTML = allLinksHTML;
+}
 generateAuthors();
 
 // FUNCTION #7 AUTHOR_CLICK_HANDLER
@@ -266,4 +274,5 @@ function addClickListenersToAuthors () {
     allTagLink.addEventListener('click', authorClickHandler);
   }
 }
+
 addClickListenersToAuthors();
