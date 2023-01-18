@@ -222,7 +222,7 @@ addClickListenersToTags();
 
 function generateAuthors () {
   /* [NEW] create a new variable allAuthors with an empty array */
-  let allAuthors = []
+  let allAuthors = {};
 
   /* find all articles */
   const articles = document.querySelectorAll(opts.articleSelector);
