@@ -332,5 +332,6 @@ function authorClickHandler (e) {
   for (const tagLink of allTagLinks) {
     tagLink.classList.add('active');
   }
-  generateAuthors('[data-authour="' + author + '"]');
+  generateTitleLinks('[data-author="' + author + '"]');
+  // generateAuthors('[data-authour="' + author + '"]');
 }
