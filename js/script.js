@@ -10,6 +10,12 @@ const templatesOne = {
 const templatesTwo = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML)
 };
+const templatesThree = {
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
+};
+const templatesFour = {
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
+};
 
 // ALL CONST
 const opts = {
