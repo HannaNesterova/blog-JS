@@ -1,5 +1,9 @@
+
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+};
 // ALL CONST
 const opts = {
   articleSelector: '.post',
@@ -68,15 +72,11 @@ function generateTitleLinks (customSelector = '') {
     const getTitle = articleTitle.innerHTML;
 
     /* create HTML of the link */
-    const createLink = `
-  <li>
-    <a href= "#${articleId}">
-      <span>${getTitle}</span>
-    </a>
-  </li>
-`;
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
+
     /* insert link into titleList */
-    titleList.innerHTML = titleList.innerHTML + createLink;
+    titleList.innerHTML = titleList.innerHTML + linkHTML;
   }
 
   const links = document.querySelectorAll('.titles a');
