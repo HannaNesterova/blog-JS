@@ -13,9 +13,9 @@ const templatesTwo = {
 const templatesThree = {
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
 };
-// const templatesFour = {
-//   tagAuthorLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
-// };
+const templatesFour = {
+  tagAuthorLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
+};
 
 // ALL CONST
 const opts = {
@@ -293,16 +293,19 @@ function generateAuthors () {
   const authorsList = document.querySelector(opts.authorsListSelector);
 
   /* [NEW] сreate variable for all links HTML code */
-  let allAuthorsHTML = '';
+  const allAuthorsData = { authors: [] };
 
   /* [NEW] START LOOP: for each author in allAuthors */
   for (const author in allAuthors) {
     /* [NEW] generate code of a link and add it to allAuthorsHTML */
-    const authorLinkHTML = '<li><a href="#author-' + author + '">' + author + '(' + allAuthors[author] + ')  </a></li>';
-    allAuthorsHTML += authorLinkHTML;
-  }
+    allAuthorsData.authors.push({
+      author: author,
+      allAuthors: allAuthors[author],
+      count: allAuthors[author]
+    });
   /* [NEW] add html from allAuthorsHTML to authorsList */
-  authorsList.innerHTML = allAuthorsHTML;
+  }
+  authorsList.innerHTML = templatesFour.tagAuthorLink(allAuthorsData);
 }
 
 generateAuthors();
