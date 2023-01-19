@@ -1,19 +1,12 @@
+/* eslint-disable object-shorthand */
 
 'use strict';
 
 const templates = {
-  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-};
-const templatesOne = {
-  listArticleTags: Handlebars.compile(document.querySelector('#template-article-tag-link').innerHTML)
-};
-const templatesTwo = {
-  articleLink: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML)
-};
-const templatesThree = {
-  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
-};
-const templatesFour = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  listArticleTags: Handlebars.compile(document.querySelector('#template-article-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML),
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
   tagAuthorLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
 };
 
@@ -180,7 +173,6 @@ function generateTags () {
 
   // [NEW] START LOOP: for each tah in allTags
   for (const tag in allTags) {
-
   // [NEW] generate code for all links and add it to allTagsHTML
     allTagsData.tags.push({
       tag: tag,
@@ -190,9 +182,7 @@ function generateTags () {
   }
 
   // [NEW] add HTML from allTagsHTML to tagList
-  tagList.innerHTML = templatesThree.tagCloudLink(allTagsData);
-  console.log(tagList.innerHTML);
-
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
 
   // FUNCTION #3 MIN AND MAX FOR TAGS
 }
@@ -252,7 +242,7 @@ addClickListenersToTags();
 
 function generateAuthors () {
   /* [NEW] create a new variable allAuthors with an empty array */
-  let allAuthors = {};
+  const allAuthors = {};
 
   /* find all articles */
   const articles = document.querySelectorAll(opts.articleSelector);
@@ -305,7 +295,8 @@ function generateAuthors () {
     });
   /* [NEW] add html from allAuthorsHTML to authorsList */
   }
-  authorsList.innerHTML = templatesFour.tagAuthorLink(allAuthorsData);
+  authorsList.innerHTML = templates.tagAuthorLink(allAuthorsData);
+  console.log(authorsList.innerHTML)
 }
 
 generateAuthors();
