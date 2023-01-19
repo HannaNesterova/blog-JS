@@ -191,6 +191,8 @@ function generateTags () {
 
   // [NEW] add HTML from allTagsHTML to tagList
   tagList.innerHTML = templatesThree.tagCloudLink(allTagsData);
+  console.log(tagList.innerHTML);
+
 
   // FUNCTION #3 MIN AND MAX FOR TAGS
 }
