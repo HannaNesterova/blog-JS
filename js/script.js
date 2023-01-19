@@ -13,9 +13,9 @@ const templatesTwo = {
 const templatesThree = {
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
 };
-const templatesFour = {
-  tagCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
-};
+// const templatesFour = {
+//   tagAuthorLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
+// };
 
 // ALL CONST
 const opts = {
@@ -180,13 +180,17 @@ function generateTags () {
 
   // [NEW] START LOOP: for each tah in allTags
   for (const tag in allTags) {
-    // [NEW] generate code for all links and add it to allTagsHTML
-    const tagLinkHTML = '<li><a class = ' + calculateTagClass(allTags[tag], tagsParams) + '  href="#tag-' + tag + '">' + tag + ' </a></li>';
-    allTagsHTML += tagLinkHTML;
+
+  // [NEW] generate code for all links and add it to allTagsHTML
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams)
+    });
   }
 
   // [NEW] add HTML from allTagsHTML to tagList
-  tagList.innerHTML = allTagsHTML;
+  tagList.innerHTML = templatesThree.tagCloudLink(allTagsData);
 
   // FUNCTION #3 MIN AND MAX FOR TAGS
 }
