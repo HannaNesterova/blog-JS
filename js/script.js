@@ -176,7 +176,7 @@ function generateTags () {
   const tagsParams = calculateTagsParams(allTags);
 
   // [NEW] create variables for all links HTML code
-  let allTagsHTML = '';
+  const allTagsData = { tags: [] };
 
   // [NEW] START LOOP: for each tah in allTags
   for (const tag in allTags) {
