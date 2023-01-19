@@ -1,6 +1,5 @@
 
 'use strict';
-// CONST TEMPLATES
 
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
@@ -9,7 +8,7 @@ const templatesOne = {
   listArticleTags: Handlebars.compile(document.querySelector('#template-article-tag-link').innerHTML)
 };
 const templatesTwo = {
-  listArticleAuthors: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML)
+  articleLink: Handlebars.compile(document.querySelector('#template-article-author-link').innerHTML)
 };
 
 // ALL CONST
@@ -146,8 +145,8 @@ function generateTags () {
     /* generate HTML of the link */
       // const link = '<li><a href = "#tag-' + tag + '">' + tag + '</a></li>';
 
-      const linkHTMLDataTag = { tag: articleTags, tags: tag };
-      const link = templatesOne.listArticleTags(linkHTMLDataTag);
+      const linkHTMLDataTag = { id: articleTags, title: tag };
+      const link = templates.articleLink(linkHTMLDataTag);
 
       /* add generated code to html variable */
       html = ' ' + link;
@@ -171,7 +170,7 @@ function generateTags () {
   const tagsParams = calculateTagsParams(allTags);
 
   // [NEW] create variables for all links HTML code
-  const allTagsData = { tags: [] };
+  let allTagsHTML = '';
 
   // [NEW] START LOOP: for each tah in allTags
   for (const tag in allTags) {
@@ -260,9 +259,8 @@ function generateAuthors () {
     /* generate HTML of the link */
 
     // const link = '<a href ="#author-' + articleTagAuthor + '">' + articleTagAuthor + '</a>';
-
-    const linkHTML = { authorId: articleTagAuthor, author: articleTagAuthor };
-    const link = templatesTwo.listArticleAuthors(linkHTML);
+    const linkHTML = { id: articleTagAuthor, title: articleTagAuthor };
+    const link = templates.articleLink(linkHTML);
 
     /* add generated code to html variable */
     html = html + link;
