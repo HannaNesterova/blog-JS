@@ -22,7 +22,6 @@ const opts = {
   cloudClassPrefix: 'tag-size-',
   authorsListSelector: '.authors.list'
 };
-
 // FUNCTION #1 TITLE_CLICK_HANDLER
 function titleClickHandler (e) {
   e.preventDefault();
