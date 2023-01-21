@@ -340,11 +340,3 @@ function authorClickHandler (e) {
   generateTitleLinks('[data-author="' + author + '"]');
   // generateAuthors('[data-authour="' + author + '"]');
 }
-
-
-
-
-
-
-
-
