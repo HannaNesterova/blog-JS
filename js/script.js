@@ -9,7 +9,6 @@ const templates = {
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
   tagAuthorLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
 };
-
 // ALL CONST
 const opts = {
   articleSelector: '.post',
@@ -341,3 +340,11 @@ function authorClickHandler (e) {
   generateTitleLinks('[data-author="' + author + '"]');
   // generateAuthors('[data-authour="' + author + '"]');
 }
+
+
+
+
+
+
+
+
